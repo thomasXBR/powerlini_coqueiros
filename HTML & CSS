@@ -1,0 +1,286 @@
+<!-- LOGIN-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Usuário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: url('https://img.freepik.com/fotos-gratis/textura-de-folha-verde-fundo-de-textura-de-folha_501050-120.jpg?t=st=1743285562~exp=1743289162~hmac=fb17b177aa4727b402357f44f05277e5f770c736e76e8ab6309b467bad4fbbb1&w=996');
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #9CBF3C, #72AF5E);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: #72AF5E;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #9CBF3C;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .possui-conta {
+            color: black;
+            margin-top: 10px;
+        }
+
+        .entrar {
+            color: #72AF5E;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .entrar:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Powerlini Coqueiro</h1>
+        <p>Entre na sua conta</p>
+
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="input-group">
+                <label for="usuario">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+
+            <button class="btn" type="submit">Entrar</button>
+        </form>
+
+        <p class="forgot-password">
+            Esqueceu sua senha? <a href="#">Recuperar</a>
+        </p>
+        <p class="possui-conta">
+            Ainda não possui conta? <a class="entrar" href="{% url 'cadastro' %}">Criar conta</a>
+        </p>
+    </div>
+</body>
+</html>
+
+
+
+<!-- CADASTRO-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Usuário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: url('https://img.freepik.com/fotos-gratis/textura-de-folha-verde-fundo-de-textura-de-folha_501050-120.jpg?t=st=1743285562~exp=1743289162~hmac=fb17b177aa4727b402357f44f05277e5f770c736e76e8ab6309b467bad4fbbb1&w=996');
+            background-size: cover;
+            background-position: center;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .input-group input {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(to right, #9CBF3C, #72AF5E);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 25px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn:hover {
+            background: #72AF5E;
+        }
+
+        .possui-conta {
+            color: black;
+            margin-top: 10px;
+        }
+
+        .entrar {
+            color: #72AF5E;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .entrar:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Powerlini Coqueiro</h1>
+        <p>Cadastre uma conta</p>
+
+        <form action="{% url 'cadastro' %}" method="POST">
+            {% csrf_token %}
+
+            <div class="input-group">
+                <label for="nome">Nome:</label>
+                <input type="nome" id="nome" name="nome" placeholder="Digite seu nome" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+            </div>
+
+            <div class="input-group">
+                <label for="senha">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+            </div>
+
+            <div class="input-group">
+                <label for="confirmar_senha">Confirmar Senha:</label>
+                <input type="password" id="confirmar_senha" name="confirmar_senha" placeholder="Confirme sua senha" required>
+            </div>
+
+            <button class="btn" type="submit">Cadastrar</button>
+        </form>
+
+        <p class="possui-conta">
+            Já possui conta? <a class="entrar" href="{% url 'login' %}">Entrar</a>
+        </p>
+    </div>
+</body>
+</html>
