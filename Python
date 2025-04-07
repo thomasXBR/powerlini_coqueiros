@@ -1,0 +1,88 @@
+#APP_PROJETO_POWERLINI
+
+#apps.py
+from django.apps import AppConfig
+
+
+class AppProjetoPowerliniConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'app_projeto_powerlini'
+    
+
+#models
+from django.db import models
+
+class Projetos(models.Model):
+    id_projeto = models.AutoField(primary_key=True)
+    nome_projeto = models.TextField(max_length=255)
+
+class Trainees(models.Model):
+    id_trainee = models.AutoField(primary_key=True)
+    nome_trainee = models.TextField(max_length=255)
+
+class Usuario(models.Model):
+    id_usuario = models.AutoField(primary_key=True)
+    nome_usuario = models.TextField(max_length=255)
+    email_usuario = models.TextField(max_length=255)
+    
+    
+#urls
+from django.urls import path
+# from ..projeto_powerlini import views
+
+urlpatterns = [
+    # path('', views.user_login, name='login'),
+    # path('cadastro/', views.user_cadastro, name='cadastro'),
+]
+
+
+
+#PROJETO_POWERLINI
+
+#urls
+from django.contrib import admin
+from django.urls import path, include
+from . import views  # Import views from app_projeto_powerlini
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('auth/', include('app_projeto_powerlini.urls')),
+    path('', views.user_login, name='login'),
+    path('cadastro/', views.user_cadastro, name='cadastro'),
+    path('pagina_principal/', views.pagina_principal, name='pagina_principal'),
+]
+
+
+#views
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+
+def user_login(request):
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        return HttpResponse(email)
+
+def user_cadastro(request): 
+    if request.method == 'GET':
+        return render(request, 'cadastro.html')
+    else:
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
+        
+        user = User.objects.filter(email=email).first()
+
+        if user:
+            return HttpResponse('Esse email já está cadastrado')
+        
+        user = User.objects.create_user(username=nome, email=email, password=senha)
+        user.save()
+
+        return HttpResponse('Usuário cadastrado com sucesso')
+
+def pagina_principal(request):
+    return render(request, 'pagina_principal.html')
